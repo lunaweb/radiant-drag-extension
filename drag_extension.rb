@@ -3,26 +3,25 @@
 
 class DragExtension < Radiant::Extension
   version "1.0"
-  description "Radiant Drag allows you to reorder pages funly"
+  description "Radiant Drag allows you to reorder pages"
   url "http://github.com/squaretalent/radiant-drag-extension"
   
-  define_routes do |map|
-    map.with_options :controller => 'admin/pages' do |page|
-      page.page_move_to "admin/pages/:id/move_to/:rel/:pos/:copy", :action => "move_to"
-      #going to have to change this once changes are made to acts_as_tree
-      #http://groups.google.com/group/radiantcms-dev/browse_thread/thread/83d62f75dc20e645/6833cf5afe0b69a4?lnk=raot&fwc=2
-    end
-  end
-  
   def activate
+    # Interface
     admin.pages.index.add :sitemap_head, "drag_order_header", :before=>"title_column_header"
-    admin.pages.index.add :node, "drag_order", :before=>"title_column"
-    admin.pages.index.add :top, "top"
+    admin.pages.index.add :node,         "drag_order",        :before=>"title_column"
     
-    Page.send :include, Drag::PageExtensions
-    Admin::PagesController.send :helper, Drag::PageHelper
-    Admin::PagesController.send :include, Drag::PageControllerExtensions
-    StandardTags.send :include, Drag::TagExtensions
+    # Models
+    Page.send :include, Drag::Models::Page
+    
+    # Tags
+    StandardTags.send :include, Drag::Tags::Core
+    
+    # Controllers
+    Admin::PagesController.send :include, Drag::Controllers::PagesController
+    
+    # Helpers
+    Admin::PagesController.send :helper, Drag::Helpers::PagesController
   end
   
 end
