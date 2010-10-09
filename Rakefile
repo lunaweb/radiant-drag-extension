@@ -4,7 +4,7 @@ begin
     gem.name = "radiant-drag-extension"
     gem.summary = %Q{Drag Extension for Radiant CMS}
     gem.description = %Q{Drag pages to sort them}
-    gem.email = "dk@squaretalent.com"
+    gem.email = "dk@dirkkelly.com"
     gem.homepage = "http://github.com/squaretalent/radiant-drag-extension"
     gem.authors = ["dirkkelly"]
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
