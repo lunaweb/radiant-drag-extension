@@ -1,9 +1,9 @@
 namespace :radiant do
   namespace :extensions do
-    namespace :shop do
+    namespace :drag do
       
       desc "Runs the migration of the DragExtension"
-      task :migrate => [ :environment, 'radiant:extensions:forms:migrate' ] do
+      task :migrate do
         require 'radiant/extension_migrator'
         if ENV["VERSION"]
           DragExtension.migrator.migrate(ENV["VERSION"].to_i)
