@@ -16,8 +16,10 @@ Gem::Specification.new do |s|
     "README"
   ]
   s.files = [
-    "README",
+    ".gitignore",
+     "README",
      "Rakefile",
+     "VERSION",
      "app/views/admin/pages/_drag_order.html.haml",
      "app/views/admin/pages/_drag_order_header.html.haml",
      "config/routes.rb",
@@ -35,6 +37,7 @@ Gem::Specification.new do |s|
      "public/images/admin/extensions/drag/handle.png",
      "public/javascripts/admin/extensions/drag/drag.js",
      "public/stylesheets/sass/admin/extensions/drag/drag.sass",
+     "radiant-drag-extension.gemspec",
      "spec/spec.opts",
      "spec/spec_helper.rb"
   ]
