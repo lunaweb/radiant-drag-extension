@@ -6,8 +6,8 @@ module Drag
         base.class_eval do
           alias_method :radiant_children_find_options, :children_find_options
           
-          def children_find_options
-            options = radiant_children_find_options
+          def children_find_options(tag)
+            options = radiant_children_find_options(tag)
             
             options[:order].sub!(/published_at/i, 'position') unless tag.attr['by']
             
