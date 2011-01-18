@@ -2,6 +2,23 @@ namespace :radiant do
   namespace :extensions do
     namespace :drag do
       
+      desc "Réindexe les positions de toutes les pages sauf le root"
+      task :positions do
+        parents_id = []
+        Page.all.each do |page|
+          if !(parents_id.include? page.parent_id) && page.slug != '/'
+            parents_id.push page.parent_id
+            siblings = Page.find_all_by_parent_id(page.parent_id,:order => ["position ASC"])
+            i = 1
+            siblings.each do |p|
+              p.position = i
+              p.save
+              i += 1
+            end
+          end
+        end
+      end
+    
       desc "Runs the migration of the DragExtension"
       task :migrate => :environment do
         require 'radiant/extension_migrator'
